@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "telekom-stb-remote"
+version = "0.1.0"
+description = "Client for the Magyar Telekom (Microsoft Mediaroom) set-top-box remote and EPG"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []          # stdlib only
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["telekom_remote*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+# pycodestyle errors, pyflakes, and import sorting. Line length and other
+# formatting concerns are owned by `ruff format`, not the linter.
+select = ["E4", "E7", "E9", "F", "I"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E402"]       # sys.path shim runs before imports
+"examples/*" = ["E402"]
