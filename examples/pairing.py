@@ -13,7 +13,7 @@ import sys
 
 import _bootstrap  # noqa: F401  (adds the repo root to sys.path)
 
-from telekom_remote import PairingError, Remote
+from telekom_iptv_remote import PairingError, Remote
 
 # --- or hard-code instead of passing on the command line ---
 BOX_IP = "<ip>"

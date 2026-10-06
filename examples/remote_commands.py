@@ -14,7 +14,7 @@ import sys
 
 import _bootstrap  # noqa: F401
 
-from telekom_remote import Device, Key, Remote
+from telekom_iptv_remote import Device, Key, Remote
 
 # --- paste your own values from the pairing step ---
 BOX_IP = "<ip>"

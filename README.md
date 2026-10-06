@@ -1,4 +1,4 @@
-# Telekom STB remote and EPG
+# Telekom IPTV remote and EPG
 
 Reverse-engineered from the Magyar Telekom Műsorújság Android app
 (`tmobile.hu.android.epgmiab`, v4.2.359). Stdlib only, no dependencies.
@@ -13,7 +13,7 @@ Two independent subsystems:
 ## Package layout
 
 ```
-src/telekom_remote/      reusable library (stdlib only)
+src/telekom_iptv_remote/ reusable library (stdlib only)
   __init__.py     exports Remote, Device, Key, Epg
   codec.py        crypto engine (Codec), ported from Java with readable names
   device.py       Device dataclass (ip, cid, key, port, seq, name)
@@ -42,7 +42,7 @@ A separate HomeAssistant integration package depends on this one.
 ## Library usage
 
 ```python
-from telekom_remote import Remote, Device, Key, Epg
+from telekom_iptv_remote import Remote, Device, Key, Epg
 
 # one-time pairing (enter the 8-hex code shown on the TV)
 remote = Remote.pair("192.168.1.50", "1a2b3c4d")
@@ -63,7 +63,7 @@ remote.set_volume(12)  # absolute volume: reads current, sends the up/down steps
 remote.tune("8")  # by logical channel number (LCN)
 remote.tune("206", epg_id=True)  # or by EPG id, resolved to the LCN via op=channels
 
-# read live box state, returns typed models from telekom_remote.types.remote
+# read live box state, returns typed models from telekom_iptv_remote.types.remote
 act = remote.activity()  # Activity: volume, muted, channel (LCN), awake, streaming
 print(act.volume, act.muted, act.channel, act.awake)
 now = remote.info()  # NowPlaying: current program
@@ -71,7 +71,7 @@ print(now.title, now.start_time, now.end_time, now.tune, now.station_epg_id)
 cap = remote.capabilities()  # Capabilities: device_type, client_version, commands
 chans = remote.channels()  # list[BoxChannel], maps LCN to EPG id (paginated)
 
-# cloud EPG (no box needed), returns typed models from telekom_remote.types.epg
+# cloud EPG (no box needed), returns typed models from telekom_iptv_remote.types.epg
 epg = Epg()
 channels = epg.channels()  # list[Channel] (ch.id, ch.name, ch.rank:int, ch.group_ids)
 groups = epg.groups()  # list[ChannelGroup]
@@ -98,7 +98,7 @@ python3 examples/state.py <ip> <cid> <key>            # dump all box state (read
 Install it as a dependency instead:
 
 ```bash
-pip install -e .          # then: from telekom_remote import Remote, Device, Key, Epg
+pip install -e .          # then: from telekom_iptv_remote import Remote, Device, Key, Epg
 ```
 
 ## Protocol notes

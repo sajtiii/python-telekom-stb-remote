@@ -5,7 +5,6 @@ on:
     branches: [main, master]
   pull_request:
 
-# cancel superseded runs on the same ref
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
@@ -28,11 +27,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install -e .
       - name: Import smoke test
-        run: python -c "from telekom_remote import Remote, Device, Key, Epg, Channel, Program, ChannelGroup; print('import OK')"
+        run: python -c "from telekom_iptv_remote import Remote, Device, Key, Epg, Channel, Program, ChannelGroup; print('import OK')"
       - name: Offline regression test (byte-exact crypto vs captured pairing)
         run: python tests/test_capture.py
       - name: Syntax check (all modules + examples)
-        run: python -m compileall -q src/telekom_remote examples tests
+        run: python -m compileall -q src/telekom_iptv_remote examples tests
 
   lint:
     name: lint
@@ -63,4 +62,4 @@ jobs:
       - name: Install the built wheel and import subpackages
         run: |
           pip install dist/*.whl
-          python -c "from telekom_remote.types.epg import Channel, Program, ChannelGroup; from telekom_remote.utils import localname; print('wheel OK — subpackages present')"
+          python -c "from telekom_iptv_remote.types.epg import Channel, Program, ChannelGroup; from telekom_iptv_remote.utils import localname; print('wheel OK — subpackages present')"

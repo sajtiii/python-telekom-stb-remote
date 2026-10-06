@@ -10,14 +10,14 @@ import sys
 
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "src"))
 
-from telekom_remote.codec import (
+from telekom_iptv_remote.codec import (
     BOOTSTRAP_CID,
     Codec,
     compute_hash,
     guid_to_bytes,
     key_to_bytes,
 )
-from telekom_remote.remote import _parse_pair_response
+from telekom_iptv_remote.remote import _parse_pair_response
 
 # --- captured values -----------------------------------------------------------
 CODE = "d67744ad"  # on-screen pairing code D67744AD

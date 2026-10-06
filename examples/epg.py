@@ -13,7 +13,7 @@ Program.channel_id). Resolving ids to objects and caching are up to the caller.
 
 import _bootstrap  # noqa: F401
 
-from telekom_remote import Epg
+from telekom_iptv_remote import Epg
 
 
 def main():

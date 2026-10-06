@@ -3,7 +3,7 @@ requires = ["setuptools>=61"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "telekom-stb-remote"
+name = "telekom-iptv-remote"
 version = "0.1.0"
 description = "Client for the Magyar Telekom (Microsoft Mediaroom) set-top-box remote and EPG"
 readme = "README.md"
@@ -12,7 +12,7 @@ dependencies = []          # stdlib only
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["telekom_remote*"]
+include = ["telekom_iptv_remote*"]
 
 [tool.ruff]
 line-length = 100

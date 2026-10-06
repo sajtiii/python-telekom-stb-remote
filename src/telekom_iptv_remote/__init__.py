@@ -1,7 +1,7 @@
 """
 Telekom (Microsoft Mediaroom) set-top-box remote + EPG client.
 
-    from telekom_remote import Remote, Device, Key, Epg
+    from telekom_iptv_remote import Remote, Device, Key, Epg
 
     remote = Remote.pair("192.168.1.50", "1a2b3c4d")
     remote.send_key(Key.VOLUME_UP)
