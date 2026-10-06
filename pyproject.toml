@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "telekom-iptv-remote"
-version = "0.1.0"
+version = "0.1.1"
 description = "Client for the Magyar Telekom (Microsoft Mediaroom) set-top-box remote and EPG"
 readme = "README.md"
 requires-python = ">=3.9"

@@ -3,7 +3,6 @@ from __future__ import annotations
 
 import urllib.error
 import urllib.request
-import xml.etree.ElementTree as ET
 
 from .codec import BOOTSTRAP_CID, DEFAULT_PORT, Codec, compute_hash, guid_to_bytes, key_to_bytes
 from .device import Device
@@ -17,7 +16,7 @@ from .types.remote import (
     NowPlaying,
     PairedDevice,
 )
-from .utils import localname
+from .utils import localname, parse_xml
 
 
 class PairingError(RuntimeError):
@@ -163,7 +162,7 @@ class Remote:
         body = self._request(command)
         if not body or body == "OK":
             return None
-        return ET.fromstring(body)
+        return parse_xml(body)
 
     def _request_xml(self, command: str, tag: str):
         """Send a read command and return the first element whose local name is `tag`."""
@@ -217,7 +216,7 @@ def _child_int(root, tag: str):
 
 def _parse_pair_response(xml_text: str):
     """Pull cid/key/name/seq out of the <device> element (f4.a), namespace-agnostic."""
-    root = ET.fromstring(xml_text)
+    root = parse_xml(xml_text)
     dev = next((e for e in root.iter() if localname(e.tag) == "device"), None)
     if dev is None:
         raise PairingError(f"no <device> in pair response: {xml_text!r}")

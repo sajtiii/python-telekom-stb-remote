@@ -30,6 +30,8 @@ jobs:
         run: python -c "from telekom_iptv_remote import Remote, Device, Key, Epg, Channel, Program, ChannelGroup; print('import OK')"
       - name: Offline regression test (byte-exact crypto vs captured pairing)
         run: python tests/test_capture.py
+      - name: Activity XML with unescaped query strings
+        run: python tests/test_xml.py
       - name: Syntax check (all modules + examples)
         run: python -m compileall -q src/telekom_iptv_remote examples tests
 

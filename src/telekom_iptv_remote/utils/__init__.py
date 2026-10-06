@@ -8,6 +8,7 @@ from .parsing import (
     opt_int,
     parse_datetime,
     parse_duration,
+    parse_xml,
 )
 
 __all__ = [
@@ -17,5 +18,6 @@ __all__ = [
     "opt_bool",
     "parse_datetime",
     "parse_duration",
+    "parse_xml",
     "items_to_dict",
 ]
